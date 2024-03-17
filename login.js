@@ -1,4 +1,4 @@
-touconst fs = require("fs");
+otouconst fs = require("fs");
 const login = require("fca-horizon-remake");
 
 var credentials = {email: "FB_EMAIL", password: "FB_PASSWORD"}; // credential information
