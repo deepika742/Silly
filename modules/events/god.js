@@ -12,22 +12,22 @@ module.exports.config = {
 module.exports.run = async function({ api, event, Threads }) {
     const logger = require("../../utils/log");
     if (!global.configModule[this.config.name].enable) return;
-    var formReport =  "= Chugli Time =" +
-                        "\n\n»  Group ID: " + event.threadID +
-                        "\n» Action: {task}" +
-                        "\n» Uski Uid : " + event.author +
+    var formReport =  "☆ 𝙲𝚑𝚞𝚐𝚕𝚒 𝚃𝚒𝚖𝚎 ☆" +
+                        "\n\n»  𝘎𝘳𝘰𝘶𝘱 𝘐𝘋: " + event.threadID +
+                        "\n» 𝘈𝘤𝘵𝘪𝘰𝘯: {task}" +
+                        "\n» 𝘜𝘴𝘬𝘢 𝘜𝘐𝘋  : " + event.author +
                         "\n» " + Date.now() +" «",
         task = "";
     switch (event.logMessageType) {
         case "log:thread-name": {
-            const oldName = (await Threads.getData(event.threadID)).name || "𝐖𝐨 𝐭𝐨 𝐁𝐡𝐮𝐥 𝐆𝐚𝐲𝐢",
+            const oldName = (await Threads.getData(event.threadID)).name || "𝘗𝘶𝘳𝘢𝘯𝘢 𝘵𝘰 𝘣𝘩𝘰𝘰𝘭 𝘨𝘢𝘺𝘪",
                     newName = event.logMessageData.name || "𝐘𝐚𝐚𝐝 𝐍𝐚𝐡𝐢";
-            task = "User changes group name from: '" + oldName + "' Lekin New Naam '" + newName + "'hai";
+            task = "𝘌𝘬 𝘎𝘳𝘰𝘶𝘱 𝘬𝘢 𝘯𝘢𝘢𝘮 𝘤𝘩𝘢𝘯𝘨𝘦 𝘬𝘪𝘺𝘢 𝘨𝘢𝘺𝘢 𝘩𝘢𝘪: '" + oldName + "' 𝘭𝘦𝘬𝘪𝘯 𝘯𝘢𝘺𝘢 𝘯𝘢𝘢𝘮😴 '" + newName + "' 𝘺𝘦 hai";
             await Threads.setData(event.threadID, {name: newName});
             break;
         }
         case "log:subscribe": {
-            if (event.logMessageData.addedParticipants.some(i => i.userFbId == api.getCurrentUserID())) task = "Mujhe kisi ne new group Me add kiya";
+            if (event.logMessageData.addedParticipants.some(i => i.userFbId == api.getCurrentUserID())) task = "𝘔𝘶𝘫𝘩𝘦 𝘬𝘪𝘴𝘪 𝘯𝘦 𝘯𝘦𝘸 𝘎𝘳𝘰𝘶𝘱 𝘮𝘦 𝘈𝘥𝘥 𝘬𝘪𝘺𝘢";
             break;
         }
         case "log:unsubscribe": {
