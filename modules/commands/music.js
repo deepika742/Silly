@@ -40,7 +40,7 @@ module.exports.config = {
     description: "Phát nhạc thông qua link YouTube hoặc từ khoá tìm kiếm",
     commandCategory: "music",
     usages: "[searchMusic]",
-    cooldowns: 150
+    cooldowns: 10
 }
 
 module.exports.handleReply = async function ({ api, event, handleReply }) {
@@ -54,7 +54,7 @@ module.exports.handleReply = async function ({ api, event, handleReply }) {
         if (fs.statSync(path).size > 26214400) return api.sendMessage('Baby 20Mb se jyada hai isme ,koi aur try kro!', event.threadID, () => fs.unlinkSync(path), event.messageID);
         api.unsendMessage(handleReply.messageID)
         return api.sendMessage({ 
-            body: `🎶=====「 𝐌𝐔𝐒𝐈𝐂 」=====️🎶\n━━━━━━━━━━━━━━\n📌 → 𝗧𝗶𝘁𝗹𝗲: ${data.title} ( ${this.convertHMS(data.dur)} )\n📆 → 𝗟𝗮𝘂𝗻𝗰𝗵 𝗗𝗮𝘁𝗲 ✔️: ${data.uploadDate}\n📻 → 𝗖𝗵𝗮𝗻𝗻𝗲𝗹: ${data.author} ( ${data.sub} )\n👀 → 𝗩𝗶𝗲𝘄𝘀 𝗥𝗲𝗮𝗹𝘁𝗶𝗺𝗲: ${data.viewCount} 𝘃𝗶𝗲𝘄\n❤️ → 𝗟𝗶𝗸𝗲𝘀 𝗥𝗲𝗮𝗹𝘁𝗶𝗺𝗲: ${data.likes}\n🔗 →  𝗟𝗶𝗻𝗸 𝗬𝗧: https://www.y2mate.com/youtube/${handleReply.link[event.body - 1]}\n⏳ → 𝗛𝗲𝗿𝗲 𝗶𝘀 𝗬𝗼𝘂𝗿 𝗠𝘂𝘀𝗶𝗰 🥰: ${Math.floor((Date.now()- data.timestart)/1000)}\n ❤️𝗣𝗹𝗲𝗮𝘀𝗲 𝗪𝗮𝗶𝘁 150 𝗦𝗲𝗰(s) 𝗙𝗼𝗿 𝗡𝗲𝘅𝘁 𝗦𝗼𝗻𝗴 \n 𝗘𝗻𝗷𝗼𝘆 𝗧𝗵𝗲 𝗠𝘂𝘀𝗶𝗰 🥰\n======= [ ${time} ] =======`,
+            body: `🎶=====「 𝐌𝐔𝐒𝐈𝐂 」=====️🎶\n━━━━━━━━━━━━━━\n📌 → 𝗧𝗶𝘁𝗹𝗲: ${data.title} ( ${this.convertHMS(data.dur)} )\n📆 → 𝗟𝗮𝘂𝗻𝗰𝗵 𝗗𝗮𝘁𝗲 ✔️: ${data.uploadDate}\n📻 → 𝗖𝗵𝗮𝗻𝗻𝗲𝗹: ${data.author} ( ${data.sub} )\n👀 → 𝗩𝗶𝗲𝘄𝘀 𝗥𝗲𝗮𝗹𝘁𝗶𝗺𝗲: ${data.viewCount} 𝘃𝗶𝗲𝘄\n❤️ → 𝗟𝗶𝗸𝗲𝘀 𝗥𝗲𝗮𝗹𝘁𝗶𝗺𝗲: ${data.likes}\n🔗 →  𝗟𝗶𝗻𝗸 𝗬𝗧: https://www.y2mate.com/youtube/${handleReply.link[event.body - 1]}\n⏳ → 𝗛𝗲𝗿𝗲 𝗶𝘀 𝗬𝗼𝘂𝗿 𝗠𝘂𝘀𝗶𝗰 🥰: ${Math.floor((Date.now()- data.timestart)/1000)}\n ❤️\n 𝗘𝗻𝗷𝗼𝘆 𝗧𝗵𝗲 𝗠𝘂𝘀𝗶𝗰 🥰\n======= [ ${time} ] =======`,
             attachment: fs.createReadStream(path)}, event.threadID, ()=> fs.unlinkSync(path), 
          event.messageID)
 
